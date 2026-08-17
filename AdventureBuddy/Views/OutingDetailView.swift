@@ -64,7 +64,8 @@ struct OutingDetailView: View {
         .navigationTitle(outing.activityTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                OutingShareLink(outing: outing)
                 Button("Edit") { isEditing = true }
                     .fontWeight(.semibold)
                     .foregroundStyle(AdventureTheme.ember)

@@ -35,7 +35,7 @@ private struct AddOutingForm: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @Query private var dogs: [Dog]
+    @Environment(\.currentDog) private var currentDog
     @State private var isShowingCamera = false
 
     var body: some View {
@@ -200,7 +200,7 @@ private struct AddOutingForm: View {
             return
         }
 
-        guard let dog = dogs.first,
+        guard let dog = currentDog,
               let outing = viewModel.makeOuting(dog: dog) else { return }
         modelContext.insert(outing)
         outing.dog = dog
@@ -220,20 +220,24 @@ private struct AddOutingForm: View {
 }
 
 #Preview("New") {
-    AddOutingView { _, _ in }
-        .modelContainer(PreviewSupport.container(includeSampleOutings: false))
+    CurrentDogScope {
+        AddOutingView { _, _ in }
+    }
+    .modelContainer(PreviewSupport.container(includeSampleOutings: false))
 }
 
 #Preview("Edit") {
-    AddOutingView(
-        outingToEdit: Outing(
-            date: .now,
-            latitude: 38.7999,
-            longitude: -120.0324,
-            locationName: "Eagle Peak",
-            activityType: "hike",
-            notes: "First real climb together."
-        )
-    ) { _, _ in }
-        .modelContainer(PreviewSupport.container())
+    CurrentDogScope {
+        AddOutingView(
+            outingToEdit: Outing(
+                date: .now,
+                latitude: 38.7999,
+                longitude: -120.0324,
+                locationName: "Eagle Peak",
+                activityType: "hike",
+                notes: "First real climb together."
+            )
+        ) { _, _ in }
+    }
+    .modelContainer(PreviewSupport.container())
 }

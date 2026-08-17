@@ -42,7 +42,22 @@
 		A1B2C3D4E5F607189ABC0061 /* OutingDistanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0060 /* OutingDistanceLabel.swift */; };
 		A1B2C3D4E5F607189ABC0063 /* JournalStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0062 /* JournalStats.swift */; };
 		A1B2C3D4E5F607189ABC0065 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0064 /* CameraPicker.swift */; };
+		A1B2C3D4E5F607189ABC0067 /* OutingShareLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0066 /* OutingShareLink.swift */; };
+		A1B2C3D4E5F607189ABC0083 /* OutingMapClustering.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0082 /* OutingMapClustering.swift */; };
+		A1B2C3D4E5F607189ABC0085 /* OutingClusterBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0084 /* OutingClusterBadge.swift */; };
+		A1B2C3D4E5F607189ABC0087 /* CurrentDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0086 /* CurrentDog.swift */; };
+		A1B2C3D4E5F607189ABC008B /* JournalExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC008A /* JournalExport.swift */; };
+		A1B2C3D4E5F607189ABC008D /* JournalExportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC008C /* JournalExportViewModel.swift */; };
+		A1B2C3D4E5F607189ABC008F /* JournalExportShareLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC008E /* JournalExportShareLink.swift */; };
 		A1B2C3D4E5F607189ABC0035 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0034 /* Theme.swift */; };
+		A1B2C3D4E5F607189ABC0071 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0070 /* TestSupport.swift */; };
+		A1B2C3D4E5F607189ABC0073 /* OutingDistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0072 /* OutingDistanceTests.swift */; };
+		A1B2C3D4E5F607189ABC0075 /* MilestoneEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0074 /* MilestoneEvaluatorTests.swift */; };
+		A1B2C3D4E5F607189ABC0077 /* JournalStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0076 /* JournalStatsTests.swift */; };
+		A1B2C3D4E5F607189ABC0079 /* JPEGPhotoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0078 /* JPEGPhotoTests.swift */; };
+		A1B2C3D4E5F607189ABC0081 /* DogAgeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0080 /* DogAgeFormatterTests.swift */; };
+		A1B2C3D4E5F607189ABC0089 /* CurrentDogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0088 /* CurrentDogTests.swift */; };
+		A1B2C3D4E5F607189ABC0091 /* JournalExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0090 /* JournalExportTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,11 +98,34 @@
 		A1B2C3D4E5F607189ABC0060 /* OutingDistanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingDistanceLabel.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F607189ABC0062 /* JournalStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalStats.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F607189ABC0064 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0066 /* OutingShareLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingShareLink.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0082 /* OutingMapClustering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingMapClustering.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0084 /* OutingClusterBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingClusterBadge.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0086 /* CurrentDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDog.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0088 /* CurrentDogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDogTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC008A /* JournalExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalExport.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC008C /* JournalExportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalExportViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC008E /* JournalExportShareLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalExportShareLink.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0090 /* JournalExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalExportTests.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F607189ABC0034 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0070 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0072 /* OutingDistanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingDistanceTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0074 /* MilestoneEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneEvaluatorTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0076 /* JournalStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalStatsTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0078 /* JPEGPhotoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPEGPhotoTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0080 /* DogAgeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogAgeFormatterTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0100 /* AdventureBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdventureBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A1B2C3D4E5F607189ABC000D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1B2C3D4E5F607189ABC0103 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -101,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B2C3D4E5F607189ABC0006 /* AdventureBuddy */,
+				A1B2C3D4E5F607189ABC0110 /* AdventureBuddyTests */,
 				A1B2C3D4E5F607189ABC0005 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B2C3D4E5F607189ABC0003 /* AdventureBuddy.app */,
+				A1B2C3D4E5F607189ABC0100 /* AdventureBuddyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,6 +199,9 @@
 				A1B2C3D4E5F607189ABC0056 /* MilestoneCelebrationView.swift */,
 				A1B2C3D4E5F607189ABC0060 /* OutingDistanceLabel.swift */,
 				A1B2C3D4E5F607189ABC0064 /* CameraPicker.swift */,
+				A1B2C3D4E5F607189ABC0066 /* OutingShareLink.swift */,
+				A1B2C3D4E5F607189ABC008E /* JournalExportShareLink.swift */,
+				A1B2C3D4E5F607189ABC0084 /* OutingClusterBadge.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +212,7 @@
 				A1B2C3D4E5F607189ABC002A /* MapViewModel.swift */,
 				A1B2C3D4E5F607189ABC002C /* LogViewModel.swift */,
 				A1B2C3D4E5F607189ABC002E /* SettingsViewModel.swift */,
+				A1B2C3D4E5F607189ABC008C /* JournalExportViewModel.swift */,
 				A1B2C3D4E5F607189ABC0048 /* AddOutingViewModel.swift */,
 				A1B2C3D4E5F607189ABC0050 /* DogSetupViewModel.swift */,
 			);
@@ -184,6 +228,9 @@
 				A1B2C3D4E5F607189ABC0062 /* JournalStats.swift */,
 				A1B2C3D4E5F607189ABC005A /* PlaceNameLookup.swift */,
 				A1B2C3D4E5F607189ABC0054 /* MilestoneEvaluator.swift */,
+				A1B2C3D4E5F607189ABC0082 /* OutingMapClustering.swift */,
+				A1B2C3D4E5F607189ABC0086 /* CurrentDog.swift */,
+				A1B2C3D4E5F607189ABC008A /* JournalExport.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -195,6 +242,21 @@
 				A1B2C3D4E5F607189ABC0015 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC0110 /* AdventureBuddyTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0070 /* TestSupport.swift */,
+				A1B2C3D4E5F607189ABC0072 /* OutingDistanceTests.swift */,
+				A1B2C3D4E5F607189ABC0074 /* MilestoneEvaluatorTests.swift */,
+				A1B2C3D4E5F607189ABC0076 /* JournalStatsTests.swift */,
+				A1B2C3D4E5F607189ABC0078 /* JPEGPhotoTests.swift */,
+				A1B2C3D4E5F607189ABC0080 /* DogAgeFormatterTests.swift */,
+				A1B2C3D4E5F607189ABC0088 /* CurrentDogTests.swift */,
+				A1B2C3D4E5F607189ABC0090 /* JournalExportTests.swift */,
+			);
+			path = AdventureBuddyTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +279,24 @@
 			productReference = A1B2C3D4E5F607189ABC0003 /* AdventureBuddy.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A1B2C3D4E5F607189ABC0101 /* AdventureBuddyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1B2C3D4E5F607189ABC0107 /* Build configuration list for PBXNativeTarget "AdventureBuddyTests" */;
+			buildPhases = (
+				A1B2C3D4E5F607189ABC0102 /* Sources */,
+				A1B2C3D4E5F607189ABC0103 /* Frameworks */,
+				A1B2C3D4E5F607189ABC0104 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1B2C3D4E5F607189ABC0109 /* PBXTargetDependency */,
+			);
+			name = AdventureBuddyTests;
+			productName = AdventureBuddyTests;
+			productReference = A1B2C3D4E5F607189ABC0100 /* AdventureBuddyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -229,6 +309,10 @@
 				TargetAttributes = {
 					A1B2C3D4E5F607189ABC0002 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					A1B2C3D4E5F607189ABC0101 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A1B2C3D4E5F607189ABC0002;
 					};
 				};
 			};
@@ -246,6 +330,7 @@
 			projectRoot = "";
 			targets = (
 				A1B2C3D4E5F607189ABC0002 /* AdventureBuddy */,
+				A1B2C3D4E5F607189ABC0101 /* AdventureBuddyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +342,13 @@
 			files = (
 				A1B2C3D4E5F607189ABC0018 /* Assets.xcassets in Resources */,
 				A1B2C3D4E5F607189ABC0019 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1B2C3D4E5F607189ABC0104 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,12 +391,52 @@
 				A1B2C3D4E5F607189ABC0061 /* OutingDistanceLabel.swift in Sources */,
 				A1B2C3D4E5F607189ABC0063 /* JournalStats.swift in Sources */,
 				A1B2C3D4E5F607189ABC0065 /* CameraPicker.swift in Sources */,
+				A1B2C3D4E5F607189ABC0067 /* OutingShareLink.swift in Sources */,
+				A1B2C3D4E5F607189ABC0083 /* OutingMapClustering.swift in Sources */,
+				A1B2C3D4E5F607189ABC0085 /* OutingClusterBadge.swift in Sources */,
+				A1B2C3D4E5F607189ABC0087 /* CurrentDog.swift in Sources */,
+				A1B2C3D4E5F607189ABC008B /* JournalExport.swift in Sources */,
+				A1B2C3D4E5F607189ABC008D /* JournalExportViewModel.swift in Sources */,
+				A1B2C3D4E5F607189ABC008F /* JournalExportShareLink.swift in Sources */,
 				A1B2C3D4E5F607189ABC0033 /* LocationService.swift in Sources */,
 				A1B2C3D4E5F607189ABC0035 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1B2C3D4E5F607189ABC0102 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1B2C3D4E5F607189ABC0071 /* TestSupport.swift in Sources */,
+				A1B2C3D4E5F607189ABC0073 /* OutingDistanceTests.swift in Sources */,
+				A1B2C3D4E5F607189ABC0075 /* MilestoneEvaluatorTests.swift in Sources */,
+				A1B2C3D4E5F607189ABC0077 /* JournalStatsTests.swift in Sources */,
+				A1B2C3D4E5F607189ABC0079 /* JPEGPhotoTests.swift in Sources */,
+				A1B2C3D4E5F607189ABC0081 /* DogAgeFormatterTests.swift in Sources */,
+				A1B2C3D4E5F607189ABC0089 /* CurrentDogTests.swift in Sources */,
+				A1B2C3D4E5F607189ABC0091 /* JournalExportTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXContainerItemProxy section */
+		A1B2C3D4E5F607189ABC0108 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1B2C3D4E5F607189ABC0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1B2C3D4E5F607189ABC0002;
+			remoteInfo = AdventureBuddy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		A1B2C3D4E5F607189ABC0109 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1B2C3D4E5F607189ABC0002 /* AdventureBuddy */;
+			targetProxy = A1B2C3D4E5F607189ABC0108 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A1B2C3D4E5F607189ABC0011 /* Debug */ = {
@@ -496,6 +628,58 @@
 			};
 			name = Release;
 		};
+		A1B2C3D4E5F607189ABC0105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adventurebuddy.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdventureBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AdventureBuddy";
+			};
+			name = Debug;
+		};
+		A1B2C3D4E5F607189ABC0106 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adventurebuddy.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdventureBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AdventureBuddy";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -513,6 +697,15 @@
 			buildConfigurations = (
 				A1B2C3D4E5F607189ABC0013 /* Debug */,
 				A1B2C3D4E5F607189ABC0014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1B2C3D4E5F607189ABC0107 /* Build configuration list for PBXNativeTarget "AdventureBuddyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B2C3D4E5F607189ABC0105 /* Debug */,
+				A1B2C3D4E5F607189ABC0106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

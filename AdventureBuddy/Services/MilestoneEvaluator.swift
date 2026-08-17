@@ -15,11 +15,10 @@ import SwiftData
 /// - `first-trip`: first outing whose `activityType` is `trip` (case-insensitive).
 /// - `ten-outings`: earned on the 10th outing, ordered by date.
 /// - `ten-places`: 10 distinct location names (trimmed, case-insensitive).
-/// - `first-snow`: conservative heuristic only — never weather APIs or GPS snow cover.
-///   An outing counts if (a) the location name or notes mention a snow keyword
-///   (snow, snowy, snowfall, blizzard, powder, sleet, whiteout), or (b) the outing
-///   date is in meteorological Northern-Hemisphere winter (December, January, February)
-///   and the activity is a hike, walk, or trip. Park/beach days in winter do not count.
+/// - `first-snow`: keyword-only — never weather APIs, GPS snow cover, or calendar
+///   winter. An outing counts when the location name or notes mention a snow
+///   keyword (snow, snowy, snowfall, blizzard, powder, sleet, whiteout).
+///   A December–February hike, walk, or trip without those words does not count.
 ///
 /// `dateEarned` is set once, using the qualifying outing’s date, and is never cleared
 /// if later outings are edited or deleted. A hike remains “first hike” even if that
@@ -141,18 +140,7 @@ enum MilestoneEvaluator {
     }
 
     static func isSnowOuting(_ outing: Outing) -> Bool {
-        if textMentionsSnow(outing.locationName) || textMentionsSnow(outing.notes ?? "") {
-            return true
-        }
-
-        let month = Calendar(identifier: .gregorian).component(.month, from: outing.date)
-        let isWinterMonth = month == 12 || month == 1 || month == 2
-        let winterActivity: Set<String> = [
-            Outing.Activity.hike.rawValue,
-            Outing.Activity.walk.rawValue,
-            Outing.Activity.trip.rawValue
-        ]
-        return isWinterMonth && winterActivity.contains(outing.activityType.lowercased())
+        textMentionsSnow(outing.locationName) || textMentionsSnow(outing.notes ?? "")
     }
 
     private static func textMentionsSnow(_ text: String) -> Bool {

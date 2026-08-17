@@ -15,8 +15,9 @@ struct OutingDistanceLabel: View {
             usesMetric: usesMetric,
             compact: compact
         ) {
-            Label(text, systemImage: "arrow.right")
+            Label(text, systemImage: "mappin")
                 .accessibilityLabel(text)
+                .accessibilityHint("Straight line to the next pin, not a walking route")
         }
     }
 }

@@ -125,6 +125,7 @@ private struct DogSetupForm: View {
     }
 
     private func save() {
+        guard CurrentDog.resolve(in: modelContext) == nil else { return }
         let dog = Dog(
             name: viewModel.trimmedName,
             breed: viewModel.trimmedBreed,

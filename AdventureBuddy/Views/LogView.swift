@@ -2,11 +2,16 @@ import SwiftData
 import SwiftUI
 
 struct LogView: View {
-    @Query(sort: \Outing.date, order: .reverse) private var outings: [Outing]
+    @Query(sort: \Outing.date, order: .reverse) private var allOutings: [Outing]
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.currentDog) private var currentDog
     @State private var viewModel = LogViewModel()
     @State private var outingToEdit: Outing?
     @State private var outingPendingDelete: Outing?
+
+    private var outings: [Outing] {
+        CurrentDog.outings(allOutings, for: currentDog)
+    }
 
     var body: some View {
         NavigationStack {
@@ -238,11 +243,15 @@ private struct OutingRow: View {
 }
 
 #Preview("With outings") {
-    LogView()
-        .modelContainer(PreviewSupport.container())
+    CurrentDogScope {
+        LogView()
+    }
+    .modelContainer(PreviewSupport.container())
 }
 
 #Preview("Empty") {
-    LogView()
-        .modelContainer(PreviewSupport.container(includeSampleOutings: false))
+    CurrentDogScope {
+        LogView()
+    }
+    .modelContainer(PreviewSupport.container(includeSampleOutings: false))
 }

@@ -3,19 +3,22 @@ import SwiftUI
 import UIKit
 
 struct SettingsView: View {
-    @Query private var dogs: [Dog]
     @Query private var dogMilestones: [Milestone]
-    @Query(sort: \Outing.date) private var outings: [Outing]
+    @Query(sort: \Outing.date) private var allOutings: [Outing]
     @AppStorage(AppPreferences.usesMetricKey) private var usesMetric = false
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.currentDog) private var currentDog
     @State private var viewModel = SettingsViewModel()
+    @State private var exportViewModel = JournalExportViewModel()
+    @State private var isConfirmingExport = false
     @State private var isConfirmingRemoveCompanion = false
 
     var body: some View {
+        @Bindable var exportViewModel = exportViewModel
         NavigationStack {
             List {
-                Section("Companion") {
-                    if let dog = dogs.first {
+                Section {
+                    if let dog = currentDog {
                         NavigationLink {
                             EditDogView(dog: dog)
                         } label: {
@@ -38,12 +41,16 @@ struct SettingsView: View {
                         Label("No dog profile yet", systemImage: "pawprint.fill")
                             .foregroundStyle(.secondary)
                     }
+                } header: {
+                    Text("Companion")
+                } footer: {
+                    Text("Adventure Buddy keeps one companion on this device.")
                 }
 
                 togetherSoFarSection
 
                 Section {
-                    if let dog = dogs.first {
+                    if let dog = currentDog {
                         ForEach(milestones(for: dog)) { milestone in
                             MilestoneRow(milestone: milestone)
                         }
@@ -51,7 +58,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Milestones")
                 } footer: {
-                    Text("First snow is earned from snowy names or notes, or from a hike, walk, or trip logged in December–February. Weather data is never used.")
+                    Text("First snow is earned when a place name or notes mention snow, blizzard, powder, sleet, or whiteout — not from a winter date alone. Weather data is never used.")
                 }
 
                 Section {
@@ -61,14 +68,18 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
-                    .accessibilityLabel("Distance units")
+                    .accessibilityLabel("Units for next-pin labels")
                     .onChange(of: usesMetric) { _, newValue in
                         viewModel.usesMetric = newValue
                     }
                 } header: {
                     Text("Distance units")
                 } footer: {
-                    Text("Distances are a straight line to your next outing in time, not a walking route. Saved on this device.")
+                    Text("Labels on the map, log, and outing details are a straight line to the next pin — not a walk, and not a route. Saved on this device.")
+                }
+
+                if currentDog != nil {
+                    exportSection
                 }
 
                 Section("About") {
@@ -76,7 +87,7 @@ struct SettingsView: View {
                     LabeledContent("Status", value: "Early development")
                 }
 
-                if let dog = dogs.first {
+                if let dog = currentDog {
                     Section {
                         Button("Remove companion", role: .destructive) {
                             isConfirmingRemoveCompanion = true
@@ -91,11 +102,26 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .confirmationDialog(
+                "Export journal?",
+                isPresented: $isConfirmingExport,
+                titleVisibility: .visible
+            ) {
+                Button("Share a copy") { prepareJournalExport() }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text(exportConfirmationMessage)
+            }
+            .alert("Couldn’t export journal", isPresented: $exportViewModel.isShowingError) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(exportViewModel.errorMessage)
+            }
+            .confirmationDialog(
                 removeCompanionTitle,
                 isPresented: $isConfirmingRemoveCompanion,
                 titleVisibility: .visible
             ) {
-                if let dog = dogs.first {
+                if let dog = currentDog {
                     Button("Remove \(dog.name)", role: .destructive, action: removeCompanion)
                 }
                 Button("Cancel", role: .cancel) {}
@@ -105,15 +131,65 @@ struct SettingsView: View {
         }
     }
 
+    private var exportConfirmationMessage: String {
+        let name = currentDog.map(displayedCompanionName) ?? "your companion"
+        return "This shares a copy of \(name)’s journal — outing dates, map coordinates, places, activities, notes, and when milestones were earned. It is not a live backup. Removing the companion or losing this phone still wipes the journal here."
+    }
+
+    private var exportSection: some View {
+        Section {
+            Button("Export journal") {
+                isConfirmingExport = true
+            }
+            .disabled(exportViewModel.isPreparing)
+            .foregroundStyle(AdventureTheme.forest)
+            .accessibilityHint("Asks first, then builds a copy to share. Not a live backup.")
+
+            if let file = exportViewModel.preparedFile {
+                JournalExportShareLink(file: file)
+            }
+        } header: {
+            Text("Export journal")
+        } footer: {
+            Text(exportFooter)
+        }
+    }
+
+    private var exportFooter: String {
+        if exportViewModel.photosOmittedBecauseTooLarge {
+            return "This copy is JSON only. Photos stay on this phone because they would make the file too large. It is not a live backup, and Adventure Buddy does not use iCloud."
+        }
+        if exportViewModel.photosIncluded {
+            return "A zip with journal JSON and JPEG photos you can save in Files or another app. This is a copy, not a live backup — it will not update itself, and Adventure Buddy does not use iCloud."
+        }
+        if exportViewModel.preparedFile != nil {
+            return "A JSON copy you can save in Files or another app. No photos were stored with this journal. It is not a live backup, and Adventure Buddy does not use iCloud."
+        }
+        return "Shares a copy you can save in Files or another app. Photos are included when the file stays a practical size; otherwise they stay on this phone. This is not a live backup, and Adventure Buddy does not use iCloud."
+    }
+
+    private func prepareJournalExport() {
+        guard let dog = currentDog else {
+            exportViewModel.errorMessage = "There’s no companion to export. Nothing was shared."
+            exportViewModel.isShowingError = true
+            return
+        }
+        exportViewModel.prepare(
+            dog: dog,
+            outings: outings(for: dog),
+            milestones: milestones(for: dog)
+        )
+    }
+
     private var removeCompanionTitle: String {
-        if let name = dogs.first?.name.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty {
+        if let name = currentDog?.name.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty {
             return "Remove \(name)?"
         }
         return "Remove companion?"
     }
 
     private var removeCompanionMessage: String {
-        guard let dog = dogs.first else {
+        guard let dog = currentDog else {
             return "Every outing and milestone will be deleted. You’ll return to setup. This can’t be undone."
         }
         let name = displayedCompanionName(dog)
@@ -136,14 +212,14 @@ struct SettingsView: View {
     }
 
     private func removeCompanion() {
-        guard let dog = dogs.first else { return }
+        guard let dog = currentDog else { return }
         modelContext.delete(dog)
         try? modelContext.save()
     }
 
     private var togetherSoFarSection: some View {
         Section {
-            if let dog = dogs.first {
+            if let dog = currentDog {
                 let stats = JournalStats.from(outings: outings(for: dog))
                 if stats.hasOutings {
                     recapRow(title: "Outings", value: "\(stats.outingCount)", symbolName: "book.pages.fill")
@@ -201,8 +277,7 @@ struct SettingsView: View {
     }
 
     private func outings(for dog: Dog) -> [Outing] {
-        let dogID = dog.persistentModelID
-        return outings.filter { $0.dog?.persistentModelID == dogID }
+        CurrentDog.outings(allOutings, for: dog)
     }
 
     private func milestones(for dog: Dog) -> [Milestone] {
@@ -298,6 +373,8 @@ private struct MilestoneRow: View {
 }
 
 #Preview {
-    SettingsView()
-        .modelContainer(PreviewSupport.container())
+    CurrentDogScope {
+        SettingsView()
+    }
+    .modelContainer(PreviewSupport.container())
 }

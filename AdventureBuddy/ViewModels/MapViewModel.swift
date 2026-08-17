@@ -2,18 +2,25 @@ import CoreLocation
 import Foundation
 import MapKit
 import Observation
+import SwiftData
 
 @MainActor
 @Observable
 final class MapViewModel {
     var cameraPosition: MapCameraPosition
     var selectedOuting: Outing?
+    var clusterPick: OutingMapClustering.Cluster?
     var authorizationStatus: CLAuthorizationStatus
     var showsLocationPrompt: Bool
+    var visibleRegion: MKCoordinateRegion
 
     private let locationService: LocationServicing
     private var hasCenteredOnUser = false
     private var lastKnownCoordinate: CLLocationCoordinate2D?
+
+    var visibleSpan: MKCoordinateSpan {
+        visibleRegion.span
+    }
 
     var isLocationAuthorized: Bool {
         authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways
@@ -28,6 +35,7 @@ final class MapViewModel {
         self.authorizationStatus = locationService.authorizationStatus
         self.showsLocationPrompt = locationService.authorizationStatus == .notDetermined
         self.cameraPosition = .region(Self.fallbackRegion)
+        self.visibleRegion = Self.fallbackRegion
 
         locationService.onAuthorizationChange = { [weak self] status in
             Task { @MainActor in
@@ -54,14 +62,50 @@ final class MapViewModel {
         showsLocationPrompt = false
     }
 
-    func select(_ outing: Outing) {
-        selectedOuting = outing
-        cameraPosition = .region(
-            MKCoordinateRegion(
-                center: outing.coordinate,
-                span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
-            )
+    func noteVisibleRegion(_ region: MKCoordinateRegion) {
+        visibleRegion = region
+    }
+
+    func clusteredContent(for outings: [Outing]) -> (pins: [Outing], clusters: [OutingMapClustering.Cluster]) {
+        OutingMapClustering.grouped(
+            from: outings,
+            span: visibleSpan,
+            selectedID: selectedOuting?.persistentModelID
         )
+    }
+
+    func handleClusterTap(_ cluster: OutingMapClustering.Cluster) {
+        if OutingMapClustering.areStacked(cluster.outings) {
+            selectedOuting = nil
+            clusterPick = cluster
+            return
+        }
+
+        let target = OutingMapClustering.expansionRegion(for: cluster.outings)
+        let alreadyExpanded =
+            visibleRegion.span.latitudeDelta <= target.span.latitudeDelta * 1.35
+            && visibleRegion.span.longitudeDelta <= target.span.longitudeDelta * 1.35
+        if alreadyExpanded {
+            selectedOuting = nil
+            clusterPick = cluster
+            return
+        }
+
+        clusterPick = nil
+        selectedOuting = nil
+        visibleRegion = target
+        cameraPosition = .region(target)
+    }
+
+    func select(_ outing: Outing) {
+        clusterPick = nil
+        selectedOuting = outing
+        let focused = MKCoordinateRegion(
+            center: outing.coordinate,
+            span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
+        )
+        visibleRegion = focused
+        cameraPosition = .region(focused)
     }
 
     func clearSelection() {
@@ -71,6 +115,10 @@ final class MapViewModel {
     func centerOnUserIfAvailable() {
         if let lastKnownCoordinate {
             cameraPosition = .userRegion(lastKnownCoordinate)
+            visibleRegion = MKCoordinateRegion(
+                center: lastKnownCoordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04)
+            )
             return
         }
 
@@ -80,7 +128,10 @@ final class MapViewModel {
 
     func showAllOutings(_ outings: [Outing]) {
         selectedOuting = nil
-        cameraPosition = .region(Self.region(containing: outings))
+        clusterPick = nil
+        let region = Self.region(containing: outings)
+        visibleRegion = region
+        cameraPosition = .region(region)
     }
 
     private func handleAuthorization(_ status: CLAuthorizationStatus) {
@@ -99,10 +150,22 @@ final class MapViewModel {
         guard !hasCenteredOnUser else { return }
         hasCenteredOnUser = true
         cameraPosition = .userRegion(location.coordinate)
+        visibleRegion = MKCoordinateRegion(
+            center: location.coordinate,
+            span: MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04)
+        )
     }
 
     static func region(containing outings: [Outing]) -> MKCoordinateRegion {
-        let coordinates = outings.map(\.coordinate)
+        region(containing: outings, extraPadding: 1.8, minimumSpan: 0.04)
+    }
+
+    static func region(
+        containing outings: [Outing],
+        extraPadding: Double,
+        minimumSpan: CLLocationDegrees
+    ) -> MKCoordinateRegion {
+        let coordinates = outings.map(\.coordinate).filter { CLLocationCoordinate2DIsValid($0) }
         guard let first = coordinates.first else {
             return fallbackRegion
         }
@@ -125,8 +188,8 @@ final class MapViewModel {
                 longitude: (minLon + maxLon) / 2
             ),
             span: MKCoordinateSpan(
-                latitudeDelta: max((maxLat - minLat) * 1.8, 0.04),
-                longitudeDelta: max((maxLon - minLon) * 1.8, 0.04)
+                latitudeDelta: max((maxLat - minLat) * extraPadding, minimumSpan),
+                longitudeDelta: max((maxLon - minLon) * extraPadding, minimumSpan)
             )
         )
     }

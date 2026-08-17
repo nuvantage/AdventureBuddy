@@ -10,7 +10,7 @@ struct DebugModelsView: View {
         NavigationStack {
             List {
                 Section("Dog") {
-                    if let dog = dogs.first {
+                    if let dog = CurrentDog.resolve(from: dogs) {
                         LabeledContent("Name", value: dog.name)
                         LabeledContent("Breed", value: dog.breed ?? "—")
                     } else {

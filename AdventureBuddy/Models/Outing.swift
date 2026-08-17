@@ -75,6 +75,13 @@ final class Outing {
             date.formatted(date: .long, time: .omitted)
         }
     }
+
+    /// Short line for the system share sheet, e.g. “Eagle Peak · Hike · Aug 10, 2026”.
+    var shareText: String {
+        let place = locationName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let when = date.formatted(date: .abbreviated, time: .omitted)
+        return "\(place) · \(activityTitle) · \(when)"
+    }
 }
 
 extension Outing {

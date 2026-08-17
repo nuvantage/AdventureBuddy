@@ -4,15 +4,20 @@ import SwiftUI
 import UIKit
 
 struct MapView: View {
-    @Query(sort: \Outing.date) private var outings: [Outing]
+    @Query(sort: \Outing.date) private var allOutings: [Outing]
     @Binding var outingToFocusID: PersistentIdentifier?
     var onAddOuting: () -> Void
 
+    @Environment(\.currentDog) private var currentDog
     @State private var viewModel = MapViewModel()
     @State private var isEditingSelectedOuting = false
     @State private var isConfirmingDelete = false
     @Environment(\.modelContext) private var modelContext
     @Environment(\.openURL) private var openURL
+
+    private var outings: [Outing] {
+        CurrentDog.outings(allOutings, for: currentDog)
+    }
 
     var body: some View {
         ZStack {
@@ -45,6 +50,22 @@ struct MapView: View {
         .onChange(of: outings.count) { _, _ in
             focusPendingOuting()
             dropSelectionIfOutingWasRemoved()
+        }
+        .sheet(item: Binding(
+            get: { viewModel.clusterPick },
+            set: { viewModel.clusterPick = $0 }
+        )) { cluster in
+            ClusterMemberSheet(
+                cluster: cluster,
+                onSelect: { outing in
+                    viewModel.select(outing)
+                },
+                onClose: {
+                    viewModel.clusterPick = nil
+                }
+            )
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $isEditingSelectedOuting) {
             if let outing = viewModel.selectedOuting {
@@ -94,12 +115,13 @@ struct MapView: View {
     }
 
     private var mapContent: some View {
-        Map(position: $viewModel.cameraPosition) {
+        let clustered = viewModel.clusteredContent(for: outings)
+        return Map(position: $viewModel.cameraPosition) {
             if viewModel.isLocationAuthorized {
                 UserAnnotation()
             }
 
-            ForEach(outings) { outing in
+            ForEach(clustered.pins) { outing in
                 Annotation(outing.locationName, coordinate: outing.coordinate, anchor: .bottom) {
                     Button {
                         viewModel.select(outing)
@@ -112,10 +134,28 @@ struct MapView: View {
                     .buttonStyle(.plain)
                 }
             }
+
+            ForEach(clustered.clusters) { cluster in
+                Annotation(
+                    "\(cluster.count) outings",
+                    coordinate: cluster.coordinate,
+                    anchor: .bottom
+                ) {
+                    Button {
+                        viewModel.handleClusterTap(cluster)
+                    } label: {
+                        OutingClusterBadge(count: cluster.count)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
         }
         .mapStyle(.standard(elevation: .realistic, pointsOfInterest: .excludingAll))
         .mapControls {
             MapCompass()
+        }
+        .onMapCameraChange(frequency: .onEnd) { context in
+            viewModel.noteVisibleRegion(context.region)
         }
         .ignoresSafeArea(edges: .top)
     }
@@ -207,7 +247,48 @@ private struct MapCircleButton: View {
     }
 }
 
+private struct ClusterMemberSheet: View {
+    let cluster: OutingMapClustering.Cluster
+    var onSelect: (Outing) -> Void
+    var onClose: () -> Void
+
+    var body: some View {
+        NavigationStack {
+            List(cluster.outings) { outing in
+                Button {
+                    onSelect(outing)
+                } label: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(outing.locationName)
+                            .font(.headline)
+                            .foregroundStyle(AdventureTheme.forest)
+                        Text("\(outing.activityTitle) · \(outing.listDateText)")
+                            .font(.subheadline)
+                            .foregroundStyle(AdventureTheme.trail)
+                    }
+                    .padding(.vertical, 4)
+                }
+                .listRowBackground(AdventureTheme.sand)
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(AdventureTheme.sand)
+            .navigationTitle("Outings here")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close", action: onClose)
+                        .foregroundStyle(AdventureTheme.ember)
+                }
+            }
+        }
+        .tint(AdventureTheme.ember)
+    }
+}
+
 #Preview {
-    MapView(outingToFocusID: .constant(nil), onAddOuting: {})
-        .modelContainer(PreviewSupport.container())
+    CurrentDogScope {
+        MapView(outingToFocusID: .constant(nil), onAddOuting: {})
+    }
+    .modelContainer(PreviewSupport.container())
 }

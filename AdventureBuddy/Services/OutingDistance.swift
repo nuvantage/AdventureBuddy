@@ -11,6 +11,8 @@ import SwiftData
 /// The latest outing (and any outing without a later sibling or a valid pin)
 /// has no distance. Distances under 10 meters are omitted so the UI never
 /// shows `0.0`.
+///
+/// Visible copy is “to next pin” / “to the next outing” so it is not read as a walk.
 enum OutingDistance {
     static let minimumDisplayableMeters: CLLocationDistance = 10
 
@@ -48,7 +50,7 @@ enum OutingDistance {
         guard let meters = metersToNextOuting(from: outing, among: outings) else { return nil }
         guard let amount = formattedAmount(meters, usesMetric: usesMetric) else { return nil }
         if compact {
-            return "\(amount) to next"
+            return "\(amount) to next pin"
         }
         return "\(amount) to the next outing"
     }

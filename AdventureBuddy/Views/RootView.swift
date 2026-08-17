@@ -2,13 +2,14 @@ import SwiftData
 import SwiftUI
 
 struct RootView: View {
-    @Query private var dogs: [Dog]
+    @Query(sort: \Dog.createdAt) private var dogs: [Dog]
 
     var body: some View {
-        if dogs.isEmpty {
-            DogSetupView()
-        } else {
+        if let companion = CurrentDog.resolve(from: dogs) {
             MainTabView()
+                .environment(\.currentDog, companion)
+        } else {
+            DogSetupView()
         }
     }
 }

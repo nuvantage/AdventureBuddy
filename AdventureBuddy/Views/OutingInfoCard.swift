@@ -32,15 +32,19 @@ struct OutingInfoCard: View {
 
                 Spacer(minLength: 8)
 
-                Button(action: onClose) {
-                    Image(systemName: "xmark")
-                        .font(.caption.weight(.bold))
-                        .foregroundStyle(AdventureTheme.trail)
-                        .frame(width: 28, height: 28)
-                        .background(AdventureTheme.trail.opacity(0.12), in: Circle())
+                HStack(spacing: 8) {
+                    OutingShareLink(outing: outing, chrome: .card)
+
+                    Button(action: onClose) {
+                        Image(systemName: "xmark")
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(AdventureTheme.trail)
+                            .frame(width: 28, height: 28)
+                            .background(AdventureTheme.trail.opacity(0.12), in: Circle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Close outing details")
                 }
-                .buttonStyle(.plain)
-                .accessibilityLabel("Close outing details")
             }
 
             HStack(spacing: 8) {

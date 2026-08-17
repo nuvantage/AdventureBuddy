@@ -9,7 +9,7 @@ enum AppTab: Hashable {
 
 struct MainTabView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var dogs: [Dog]
+    @Environment(\.currentDog) private var currentDog
     @State private var selectedTab: AppTab = .map
     @State private var isAddingOuting = false
     @State private var outingToFocusID: PersistentIdentifier?
@@ -64,16 +64,17 @@ struct MainTabView: View {
             pendingCelebration = []
         }
         .onAppear {
-            if let dog = dogs.first {
-                MilestoneCatalog.seed(into: modelContext, dog: dog)
-                try? modelContext.save()
-                MilestoneEvaluator.evaluate(dog: dog, in: modelContext)
-            }
+            guard let dog = currentDog else { return }
+            MilestoneCatalog.seed(into: modelContext, dog: dog)
+            try? modelContext.save()
+            MilestoneEvaluator.evaluate(dog: dog, in: modelContext)
         }
     }
 }
 
 #Preview {
-    MainTabView()
-        .modelContainer(PreviewSupport.container())
+    CurrentDogScope {
+        MainTabView()
+    }
+    .modelContainer(PreviewSupport.container())
 }
