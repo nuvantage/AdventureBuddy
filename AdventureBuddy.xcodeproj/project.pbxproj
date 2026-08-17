@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1B2C3D4E5F607189ABC0018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0015 /* Assets.xcassets */; };
+		A1B2C3D4E5F607189ABC0019 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0016 /* LaunchScreen.storyboard */; };
+		A1B2C3D4E5F607189ABC0021 /* AdventureBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0020 /* AdventureBuddyApp.swift */; };
+		A1B2C3D4E5F607189ABC0023 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0022 /* MainTabView.swift */; };
+		A1B2C3D4E5F607189ABC0025 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0024 /* MapView.swift */; };
+		A1B2C3D4E5F607189ABC0027 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0026 /* LogView.swift */; };
+		A1B2C3D4E5F607189ABC0029 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0028 /* SettingsView.swift */; };
+		A1B2C3D4E5F607189ABC002B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC002A /* MapViewModel.swift */; };
+		A1B2C3D4E5F607189ABC002D /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC002C /* LogViewModel.swift */; };
+		A1B2C3D4E5F607189ABC002F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC002E /* SettingsViewModel.swift */; };
+		A1B2C3D4E5F607189ABC0031 /* Outing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0030 /* Outing.swift */; };
+		A1B2C3D4E5F607189ABC0033 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0032 /* LocationService.swift */; };
+		A1B2C3D4E5F607189ABC0037 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0036 /* Dog.swift */; };
+		A1B2C3D4E5F607189ABC0039 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0038 /* Milestone.swift */; };
+		A1B2C3D4E5F607189ABC003B /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC003A /* SampleData.swift */; };
+		A1B2C3D4E5F607189ABC003D /* DebugModelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC003C /* DebugModelsView.swift */; };
+		A1B2C3D4E5F607189ABC003F /* OutingInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC003E /* OutingInfoCard.swift */; };
+		A1B2C3D4E5F607189ABC0041 /* LocationPermissionPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0040 /* LocationPermissionPrompt.swift */; };
+		A1B2C3D4E5F607189ABC0043 /* OutingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0042 /* OutingDetailView.swift */; };
+		A1B2C3D4E5F607189ABC0047 /* AddOutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0046 /* AddOutingView.swift */; };
+		A1B2C3D4E5F607189ABC0049 /* AddOutingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0048 /* AddOutingViewModel.swift */; };
+		A1B2C3D4E5F607189ABC004B /* OutingMapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC004A /* OutingMapPin.swift */; };
+		A1B2C3D4E5F607189ABC004D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC004C /* RootView.swift */; };
+		A1B2C3D4E5F607189ABC004F /* DogSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC004E /* DogSetupView.swift */; };
+		A1B2C3D4E5F607189ABC0051 /* DogSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0050 /* DogSetupViewModel.swift */; };
+		A1B2C3D4E5F607189ABC0053 /* MilestoneCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0052 /* MilestoneCatalog.swift */; };
+		A1B2C3D4E5F607189ABC0035 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0034 /* Theme.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A1B2C3D4E5F607189ABC0003 /* AdventureBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventureBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B2C3D4E5F607189ABC0015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0016 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0020 /* AdventureBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureBuddyApp.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0022 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0024 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0026 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0028 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC002A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC002C /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC002E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0030 /* Outing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outing.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0032 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0036 /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0038 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC003A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC003C /* DebugModelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugModelsView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC003E /* OutingInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingInfoCard.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0040 /* LocationPermissionPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionPrompt.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0042 /* OutingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingDetailView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0046 /* AddOutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutingView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0048 /* AddOutingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutingViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC004A /* OutingMapPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingMapPin.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC004C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC004E /* DogSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogSetupView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0050 /* DogSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogSetupViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0052 /* MilestoneCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCatalog.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0034 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1B2C3D4E5F607189ABC000D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1B2C3D4E5F607189ABC0004 = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0006 /* AdventureBuddy */,
+				A1B2C3D4E5F607189ABC0005 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC0005 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0003 /* AdventureBuddy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC0006 /* AdventureBuddy */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0020 /* AdventureBuddyApp.swift */,
+				A1B2C3D4E5F607189ABC0007 /* Models */,
+				A1B2C3D4E5F607189ABC0008 /* Views */,
+				A1B2C3D4E5F607189ABC0009 /* ViewModels */,
+				A1B2C3D4E5F607189ABC000A /* Services */,
+				A1B2C3D4E5F607189ABC000B /* Resources */,
+				A1B2C3D4E5F607189ABC0016 /* LaunchScreen.storyboard */,
+				A1B2C3D4E5F607189ABC0017 /* Info.plist */,
+			);
+			path = AdventureBuddy;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC0007 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0036 /* Dog.swift */,
+				A1B2C3D4E5F607189ABC0030 /* Outing.swift */,
+				A1B2C3D4E5F607189ABC0038 /* Milestone.swift */,
+				A1B2C3D4E5F607189ABC0052 /* MilestoneCatalog.swift */,
+				A1B2C3D4E5F607189ABC003A /* SampleData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC0008 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0022 /* MainTabView.swift */,
+				A1B2C3D4E5F607189ABC004C /* RootView.swift */,
+				A1B2C3D4E5F607189ABC004E /* DogSetupView.swift */,
+				A1B2C3D4E5F607189ABC0024 /* MapView.swift */,
+				A1B2C3D4E5F607189ABC0026 /* LogView.swift */,
+				A1B2C3D4E5F607189ABC0028 /* SettingsView.swift */,
+				A1B2C3D4E5F607189ABC003C /* DebugModelsView.swift */,
+				A1B2C3D4E5F607189ABC003E /* OutingInfoCard.swift */,
+				A1B2C3D4E5F607189ABC0040 /* LocationPermissionPrompt.swift */,
+				A1B2C3D4E5F607189ABC0042 /* OutingDetailView.swift */,
+				A1B2C3D4E5F607189ABC0046 /* AddOutingView.swift */,
+				A1B2C3D4E5F607189ABC004A /* OutingMapPin.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC0009 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC002A /* MapViewModel.swift */,
+				A1B2C3D4E5F607189ABC002C /* LogViewModel.swift */,
+				A1B2C3D4E5F607189ABC002E /* SettingsViewModel.swift */,
+				A1B2C3D4E5F607189ABC0048 /* AddOutingViewModel.swift */,
+				A1B2C3D4E5F607189ABC0050 /* DogSetupViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC000A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0032 /* LocationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F607189ABC000B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F607189ABC0034 /* Theme.swift */,
+				A1B2C3D4E5F607189ABC0015 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1B2C3D4E5F607189ABC0002 /* AdventureBuddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1B2C3D4E5F607189ABC0010 /* Build configuration list for PBXNativeTarget "AdventureBuddy" */;
+			buildPhases = (
+				A1B2C3D4E5F607189ABC000C /* Sources */,
+				A1B2C3D4E5F607189ABC000D /* Frameworks */,
+				A1B2C3D4E5F607189ABC000E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AdventureBuddy;
+			productName = AdventureBuddy;
+			productReference = A1B2C3D4E5F607189ABC0003 /* AdventureBuddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1B2C3D4E5F607189ABC0001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					A1B2C3D4E5F607189ABC0002 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = A1B2C3D4E5F607189ABC000F /* Build configuration list for PBXProject "AdventureBuddy" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1B2C3D4E5F607189ABC0004;
+			productRefGroup = A1B2C3D4E5F607189ABC0005 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1B2C3D4E5F607189ABC0002 /* AdventureBuddy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1B2C3D4E5F607189ABC000E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1B2C3D4E5F607189ABC0018 /* Assets.xcassets in Resources */,
+				A1B2C3D4E5F607189ABC0019 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1B2C3D4E5F607189ABC000C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1B2C3D4E5F607189ABC0021 /* AdventureBuddyApp.swift in Sources */,
+				A1B2C3D4E5F607189ABC0023 /* MainTabView.swift in Sources */,
+				A1B2C3D4E5F607189ABC0025 /* MapView.swift in Sources */,
+				A1B2C3D4E5F607189ABC0027 /* LogView.swift in Sources */,
+				A1B2C3D4E5F607189ABC0029 /* SettingsView.swift in Sources */,
+				A1B2C3D4E5F607189ABC002B /* MapViewModel.swift in Sources */,
+				A1B2C3D4E5F607189ABC002D /* LogViewModel.swift in Sources */,
+				A1B2C3D4E5F607189ABC002F /* SettingsViewModel.swift in Sources */,
+				A1B2C3D4E5F607189ABC0031 /* Outing.swift in Sources */,
+				A1B2C3D4E5F607189ABC0037 /* Dog.swift in Sources */,
+				A1B2C3D4E5F607189ABC0039 /* Milestone.swift in Sources */,
+				A1B2C3D4E5F607189ABC003B /* SampleData.swift in Sources */,
+				A1B2C3D4E5F607189ABC003D /* DebugModelsView.swift in Sources */,
+				A1B2C3D4E5F607189ABC003F /* OutingInfoCard.swift in Sources */,
+				A1B2C3D4E5F607189ABC0041 /* LocationPermissionPrompt.swift in Sources */,
+				A1B2C3D4E5F607189ABC0043 /* OutingDetailView.swift in Sources */,
+				A1B2C3D4E5F607189ABC0047 /* AddOutingView.swift in Sources */,
+				A1B2C3D4E5F607189ABC0049 /* AddOutingViewModel.swift in Sources */,
+				A1B2C3D4E5F607189ABC004B /* OutingMapPin.swift in Sources */,
+				A1B2C3D4E5F607189ABC004D /* RootView.swift in Sources */,
+				A1B2C3D4E5F607189ABC004F /* DogSetupView.swift in Sources */,
+				A1B2C3D4E5F607189ABC0051 /* DogSetupViewModel.swift in Sources */,
+				A1B2C3D4E5F607189ABC0053 /* MilestoneCatalog.swift in Sources */,
+				A1B2C3D4E5F607189ABC0033 /* LocationService.swift in Sources */,
+				A1B2C3D4E5F607189ABC0035 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1B2C3D4E5F607189ABC0011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		A1B2C3D4E5F607189ABC0012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.10;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1B2C3D4E5F607189ABC0013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AdventureBuddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Adventure Buddy";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Adventure Buddy uses your location to show where you are on the journey map and to place the walks and hikes you share with your dog.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adventurebuddy.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1B2C3D4E5F607189ABC0014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AdventureBuddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Adventure Buddy";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Adventure Buddy uses your location to show where you are on the journey map and to place the walks and hikes you share with your dog.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adventurebuddy.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1B2C3D4E5F607189ABC000F /* Build configuration list for PBXProject "AdventureBuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B2C3D4E5F607189ABC0011 /* Debug */,
+				A1B2C3D4E5F607189ABC0012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1B2C3D4E5F607189ABC0010 /* Build configuration list for PBXNativeTarget "AdventureBuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B2C3D4E5F607189ABC0013 /* Debug */,
+				A1B2C3D4E5F607189ABC0014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1B2C3D4E5F607189ABC0001 /* Project object */;
+}
