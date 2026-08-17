@@ -9,6 +9,9 @@ struct MapView: View {
     var onAddOuting: () -> Void
 
     @State private var viewModel = MapViewModel()
+    @State private var isEditingSelectedOuting = false
+    @State private var isConfirmingDelete = false
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.openURL) private var openURL
 
     var body: some View {
@@ -41,7 +44,46 @@ struct MapView: View {
         }
         .onChange(of: outings.count) { _, _ in
             focusPendingOuting()
+            dropSelectionIfOutingWasRemoved()
         }
+        .sheet(isPresented: $isEditingSelectedOuting) {
+            if let outing = viewModel.selectedOuting {
+                AddOutingView(outingToEdit: outing) { updated, _ in
+                    viewModel.select(updated)
+                }
+            }
+        }
+        .confirmationDialog(
+            "Delete this outing?",
+            isPresented: $isConfirmingDelete,
+            titleVisibility: .visible
+        ) {
+            Button("Delete outing", role: .destructive, action: deleteSelectedOuting)
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            if let outing = viewModel.selectedOuting {
+                Text("“\(outing.locationName)” will be removed from the map and log. This can’t be undone.")
+            }
+        }
+    }
+
+    private func dropSelectionIfOutingWasRemoved() {
+        guard let selectedID = viewModel.selectedOuting?.persistentModelID,
+              !outings.contains(where: { $0.persistentModelID == selectedID }) else { return }
+        viewModel.clearSelection()
+    }
+
+    private func deleteSelectedOuting() {
+        guard let outing = viewModel.selectedOuting else { return }
+        let remaining = outings.filter { $0.persistentModelID != outing.persistentModelID }
+        let dog = outing.dog
+        viewModel.clearSelection()
+        modelContext.delete(outing)
+        try? modelContext.save()
+        if let dog {
+            MilestoneEvaluator.evaluate(dog: dog, in: modelContext)
+        }
+        viewModel.showAllOutings(remaining)
     }
 
     private func focusPendingOuting() {
@@ -123,7 +165,12 @@ struct MapView: View {
     private var bottomChrome: some View {
         HStack(alignment: .bottom, spacing: 12) {
             if let outing = viewModel.selectedOuting {
-                OutingInfoCard(outing: outing, onClose: viewModel.clearSelection)
+                OutingInfoCard(
+                    outing: outing,
+                    onEdit: { isEditingSelectedOuting = true },
+                    onDelete: { isConfirmingDelete = true },
+                    onClose: viewModel.clearSelection
+                )
             } else {
                 Spacer(minLength: 0)
             }

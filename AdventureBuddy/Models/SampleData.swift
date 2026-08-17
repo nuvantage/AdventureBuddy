@@ -8,7 +8,7 @@ enum PreviewSupport {
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
         let container = try! ModelContainer(for: schema, configurations: [configuration])
         let context = container.mainContext
-        let dog = Dog(name: "Scout", breed: "Australian Shepherd")
+        let dog = Dog(name: "Scout", breed: "Australian Shepherd", birthdate: sampleBirthday)
         context.insert(dog)
         MilestoneCatalog.seed(into: context, dog: dog)
 
@@ -16,9 +16,14 @@ enum PreviewSupport {
             for outing in sampleOutings(for: dog) {
                 context.insert(outing)
             }
+            MilestoneEvaluator.evaluate(dog: dog, in: context)
         }
 
         return container
+    }
+
+    private static var sampleBirthday: Date {
+        date(year: 2023, month: 5, day: 12)
     }
 
     static func sampleOutings(for dog: Dog) -> [Outing] {

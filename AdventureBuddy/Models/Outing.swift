@@ -44,6 +44,37 @@ final class Outing {
     var activitySymbolName: String {
         Activity(rawValue: activityType)?.symbolName ?? "pawprint.fill"
     }
+
+    /// Trimmed, lowercase location used for “distinct places” (same rule as ten-places).
+    var distinctLocationKey: String? {
+        let key = locationName.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        return key.isEmpty ? nil : key
+    }
+
+    /// True when the stored time is not midnight, so we can show it without
+    /// implying a 12:00 AM walk for date-only outings from earlier builds.
+    var hasDisplayableTimeOfDay: Bool {
+        let components = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
+        return (components.hour ?? 0) != 0
+            || (components.minute ?? 0) != 0
+            || (components.second ?? 0) != 0
+    }
+
+    var listDateText: String {
+        if hasDisplayableTimeOfDay {
+            date.formatted(date: .abbreviated, time: .shortened)
+        } else {
+            date.formatted(date: .abbreviated, time: .omitted)
+        }
+    }
+
+    var detailDateText: String {
+        if hasDisplayableTimeOfDay {
+            date.formatted(date: .long, time: .shortened)
+        } else {
+            date.formatted(date: .long, time: .omitted)
+        }
+    }
 }
 
 extension Outing {

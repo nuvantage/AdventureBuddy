@@ -16,6 +16,7 @@ private struct DogSetupForm: View {
     @Bindable var viewModel: DogSetupViewModel
     @Binding var selectedPhoto: PhotosPickerItem?
     @Environment(\.modelContext) private var modelContext
+    @State private var isShowingCamera = false
 
     var body: some View {
         NavigationStack {
@@ -37,7 +38,7 @@ private struct DogSetupForm: View {
                             .multilineTextAlignment(.center)
                     }
 
-                    photoPicker
+                    photoControls
 
                     VStack(spacing: 14) {
                         TextField("Name", text: $viewModel.name, prompt: Text("Scout"))
@@ -48,6 +49,8 @@ private struct DogSetupForm: View {
                         TextField("Breed (optional)", text: $viewModel.breed, prompt: Text("Australian Shepherd"))
                             .padding(14)
                             .background(Color.white.opacity(0.72), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+
+                        DogBirthdayField(viewModel: viewModel)
                     }
 
                     Button(action: save) {
@@ -69,6 +72,26 @@ private struct DogSetupForm: View {
             .toolbar(.hidden, for: .navigationBar)
             .onChange(of: selectedPhoto) { _, item in
                 Task { await loadPhoto(from: item) }
+            }
+            .fullScreenCover(isPresented: $isShowingCamera) {
+                CameraPicker(isPresented: $isShowingCamera) { data in
+                    selectedPhoto = nil
+                    viewModel.photoData = data
+                }
+                .ignoresSafeArea()
+            }
+        }
+    }
+
+    private var photoControls: some View {
+        VStack(spacing: 10) {
+            photoPicker
+            if DeviceCamera.isAvailable {
+                TakePhotoButton {
+                    isShowingCamera = true
+                }
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(AdventureTheme.ember)
             }
         }
     }
@@ -105,6 +128,7 @@ private struct DogSetupForm: View {
         let dog = Dog(
             name: viewModel.trimmedName,
             breed: viewModel.trimmedBreed,
+            birthdate: viewModel.selectedBirthdate,
             photoData: viewModel.photoData
         )
         modelContext.insert(dog)
@@ -113,20 +137,39 @@ private struct DogSetupForm: View {
     }
 
     private func loadPhoto(from item: PhotosPickerItem?) async {
-        guard let item else {
-            viewModel.photoData = nil
-            return
-        }
+        guard let item else { return }
         guard let data = try? await item.loadTransferable(type: Data.self) else { return }
-        if let image = UIImage(data: data) {
-            viewModel.photoData = image.jpegData(compressionQuality: 0.82)
-        } else {
-            viewModel.photoData = data
-        }
+        viewModel.photoData = JPEGPhoto.data(from: data)
     }
 }
 
 #Preview {
     DogSetupView()
         .modelContainer(for: [Dog.self, Outing.self, Milestone.self], inMemory: true)
+}
+
+struct DogBirthdayField: View {
+    @Bindable var viewModel: DogSetupViewModel
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Toggle("Birthday (optional)", isOn: $viewModel.hasBirthdate)
+                .tint(AdventureTheme.ember)
+                .foregroundStyle(AdventureTheme.forest)
+
+            if viewModel.hasBirthdate {
+                DatePicker(
+                    "Birthday",
+                    selection: $viewModel.birthdate,
+                    in: viewModel.birthdayRange,
+                    displayedComponents: .date
+                )
+                .datePickerStyle(.compact)
+                .tint(AdventureTheme.ember)
+                .accessibilityHint("Leave off if you don’t know their birthday")
+            }
+        }
+        .padding(14)
+        .background(Color.white.opacity(0.72), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+    }
 }

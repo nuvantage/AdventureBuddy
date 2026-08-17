@@ -33,6 +33,15 @@
 		A1B2C3D4E5F607189ABC004F /* DogSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC004E /* DogSetupView.swift */; };
 		A1B2C3D4E5F607189ABC0051 /* DogSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0050 /* DogSetupViewModel.swift */; };
 		A1B2C3D4E5F607189ABC0053 /* MilestoneCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0052 /* MilestoneCatalog.swift */; };
+		A1B2C3D4E5F607189ABC0055 /* MilestoneEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0054 /* MilestoneEvaluator.swift */; };
+		A1B2C3D4E5F607189ABC0057 /* MilestoneCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0056 /* MilestoneCelebrationView.swift */; };
+		A1B2C3D4E5F607189ABC0059 /* EditDogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0058 /* EditDogView.swift */; };
+		A1B2C3D4E5F607189ABC005B /* PlaceNameLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC005A /* PlaceNameLookup.swift */; };
+		A1B2C3D4E5F607189ABC005D /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC005C /* AppPreferences.swift */; };
+		A1B2C3D4E5F607189ABC005F /* OutingDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC005E /* OutingDistance.swift */; };
+		A1B2C3D4E5F607189ABC0061 /* OutingDistanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0060 /* OutingDistanceLabel.swift */; };
+		A1B2C3D4E5F607189ABC0063 /* JournalStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0062 /* JournalStats.swift */; };
+		A1B2C3D4E5F607189ABC0065 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0064 /* CameraPicker.swift */; };
 		A1B2C3D4E5F607189ABC0035 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F607189ABC0034 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +74,15 @@
 		A1B2C3D4E5F607189ABC004E /* DogSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogSetupView.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F607189ABC0050 /* DogSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogSetupViewModel.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F607189ABC0052 /* MilestoneCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCatalog.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0054 /* MilestoneEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneEvaluator.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0056 /* MilestoneCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCelebrationView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0058 /* EditDogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDogView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC005A /* PlaceNameLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceNameLookup.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC005C /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC005E /* OutingDistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingDistance.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0060 /* OutingDistanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingDistanceLabel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0062 /* JournalStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalStats.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F607189ABC0064 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F607189ABC0034 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +146,7 @@
 				A1B2C3D4E5F607189ABC0022 /* MainTabView.swift */,
 				A1B2C3D4E5F607189ABC004C /* RootView.swift */,
 				A1B2C3D4E5F607189ABC004E /* DogSetupView.swift */,
+				A1B2C3D4E5F607189ABC0058 /* EditDogView.swift */,
 				A1B2C3D4E5F607189ABC0024 /* MapView.swift */,
 				A1B2C3D4E5F607189ABC0026 /* LogView.swift */,
 				A1B2C3D4E5F607189ABC0028 /* SettingsView.swift */,
@@ -137,6 +156,9 @@
 				A1B2C3D4E5F607189ABC0042 /* OutingDetailView.swift */,
 				A1B2C3D4E5F607189ABC0046 /* AddOutingView.swift */,
 				A1B2C3D4E5F607189ABC004A /* OutingMapPin.swift */,
+				A1B2C3D4E5F607189ABC0056 /* MilestoneCelebrationView.swift */,
+				A1B2C3D4E5F607189ABC0060 /* OutingDistanceLabel.swift */,
+				A1B2C3D4E5F607189ABC0064 /* CameraPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +179,11 @@
 			isa = PBXGroup;
 			children = (
 				A1B2C3D4E5F607189ABC0032 /* LocationService.swift */,
+				A1B2C3D4E5F607189ABC005C /* AppPreferences.swift */,
+				A1B2C3D4E5F607189ABC005E /* OutingDistance.swift */,
+				A1B2C3D4E5F607189ABC0062 /* JournalStats.swift */,
+				A1B2C3D4E5F607189ABC005A /* PlaceNameLookup.swift */,
+				A1B2C3D4E5F607189ABC0054 /* MilestoneEvaluator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -263,6 +290,15 @@
 				A1B2C3D4E5F607189ABC004F /* DogSetupView.swift in Sources */,
 				A1B2C3D4E5F607189ABC0051 /* DogSetupViewModel.swift in Sources */,
 				A1B2C3D4E5F607189ABC0053 /* MilestoneCatalog.swift in Sources */,
+				A1B2C3D4E5F607189ABC0055 /* MilestoneEvaluator.swift in Sources */,
+				A1B2C3D4E5F607189ABC0057 /* MilestoneCelebrationView.swift in Sources */,
+				A1B2C3D4E5F607189ABC0059 /* EditDogView.swift in Sources */,
+				A1B2C3D4E5F607189ABC005B /* PlaceNameLookup.swift in Sources */,
+				A1B2C3D4E5F607189ABC005D /* AppPreferences.swift in Sources */,
+				A1B2C3D4E5F607189ABC005F /* OutingDistance.swift in Sources */,
+				A1B2C3D4E5F607189ABC0061 /* OutingDistanceLabel.swift in Sources */,
+				A1B2C3D4E5F607189ABC0063 /* JournalStats.swift in Sources */,
+				A1B2C3D4E5F607189ABC0065 /* CameraPicker.swift in Sources */,
 				A1B2C3D4E5F607189ABC0033 /* LocationService.swift in Sources */,
 				A1B2C3D4E5F607189ABC0035 /* Theme.swift in Sources */,
 			);
@@ -400,6 +436,7 @@
 				INFOPLIST_FILE = AdventureBuddy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Adventure Buddy";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Adventure Buddy uses the camera so you can take a photo of your dog or an outing while you’re out together.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Adventure Buddy uses your location to show where you are on the journey map and to place the walks and hikes you share with your dog.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -435,6 +472,7 @@
 				INFOPLIST_FILE = AdventureBuddy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Adventure Buddy";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Adventure Buddy uses the camera so you can take a photo of your dog or an outing while you’re out together.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Adventure Buddy uses your location to show where you are on the journey map and to place the walks and hikes you share with your dog.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

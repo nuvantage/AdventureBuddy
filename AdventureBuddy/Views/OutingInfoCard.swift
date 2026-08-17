@@ -2,10 +2,12 @@ import SwiftUI
 
 struct OutingInfoCard: View {
     let outing: Outing
+    var onEdit: () -> Void
+    var onDelete: () -> Void
     let onClose: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .top, spacing: 12) {
                 Image(systemName: outing.activitySymbolName)
                     .font(.title3)
@@ -17,12 +19,15 @@ struct OutingInfoCard: View {
                     Text(outing.locationName)
                         .font(.headline)
                         .foregroundStyle(AdventureTheme.forest)
-                    Text(outing.date.formatted(date: .abbreviated, time: .omitted))
+                    Text(outing.listDateText)
                         .font(.subheadline)
                         .foregroundStyle(AdventureTheme.trail)
                     Text(outing.activityTitle)
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(AdventureTheme.ember)
+                    OutingDistanceLabel(outing: outing)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(AdventureTheme.trail)
                 }
 
                 Spacer(minLength: 8)
@@ -36,6 +41,28 @@ struct OutingInfoCard: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Close outing details")
+            }
+
+            HStack(spacing: 8) {
+                Button(action: onEdit) {
+                    Label("Edit", systemImage: "pencil")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(AdventureTheme.ember)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .background(AdventureTheme.ember.opacity(0.16), in: Capsule())
+                }
+                .buttonStyle(.plain)
+
+                Button(action: onDelete) {
+                    Label("Delete", systemImage: "trash")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(AdventureTheme.trail)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .background(AdventureTheme.trail.opacity(0.12), in: Capsule())
+                }
+                .buttonStyle(.plain)
             }
         }
         .padding(14)
@@ -54,8 +81,10 @@ struct OutingInfoCard: View {
             locationName: "Riverside Trail",
             activityType: "walk"
         ),
+        onEdit: {},
+        onDelete: {},
         onClose: {}
     )
-        .padding()
-        .background(AdventureTheme.forest)
+    .padding()
+    .background(AdventureTheme.forest)
 }

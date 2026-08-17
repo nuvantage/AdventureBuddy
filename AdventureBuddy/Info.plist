@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>Adventure Buddy</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Adventure Buddy uses the camera so you can take a photo of your dog or an outing while you’re out together.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Adventure Buddy uses your location to show where you are on the journey map and to place the walks and hikes you share with your dog.</string>
 	<key>UILaunchStoryboardName</key>

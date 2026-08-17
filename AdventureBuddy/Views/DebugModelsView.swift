@@ -26,7 +26,7 @@ struct DebugModelsView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(outing.locationName)
                                     .font(.headline)
-                                Text("\(outing.activityType) · \(outing.date.formatted(date: .abbreviated, time: .shortened))")
+                                Text("\(outing.activityType) · \(outing.listDateText)")
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
                             }

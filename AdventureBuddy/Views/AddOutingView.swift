@@ -5,13 +5,21 @@ import SwiftUI
 import UIKit
 
 struct AddOutingView: View {
-    var onSave: (Outing) -> Void
+    var outingToEdit: Outing? = nil
+    var onSave: (Outing, [Milestone]) -> Void
 
-    @State private var viewModel = AddOutingViewModel()
+    @State private var viewModel: AddOutingViewModel
     @State private var selectedPhoto: PhotosPickerItem?
+
+    init(outingToEdit: Outing? = nil, onSave: @escaping (Outing, [Milestone]) -> Void) {
+        self.outingToEdit = outingToEdit
+        self.onSave = onSave
+        _viewModel = State(initialValue: AddOutingViewModel(outing: outingToEdit))
+    }
 
     var body: some View {
         AddOutingForm(
+            outingToEdit: outingToEdit,
             onSave: onSave,
             viewModel: viewModel,
             selectedPhoto: $selectedPhoto
@@ -20,13 +28,15 @@ struct AddOutingView: View {
 }
 
 private struct AddOutingForm: View {
-    var onSave: (Outing) -> Void
+    var outingToEdit: Outing?
+    var onSave: (Outing, [Milestone]) -> Void
     @Bindable var viewModel: AddOutingViewModel
     @Binding var selectedPhoto: PhotosPickerItem?
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @Query private var dogs: [Dog]
+    @State private var isShowingCamera = false
 
     var body: some View {
         NavigationStack {
@@ -41,8 +51,12 @@ private struct AddOutingForm: View {
                 }
 
                 Section("Details") {
-                    DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
-                    TextField("Location name", text: $viewModel.locationName, prompt: Text("Riverside Trail"))
+                    DatePicker("When", selection: $viewModel.date, displayedComponents: [.date, .hourAndMinute])
+                    TextField(
+                        "Location name",
+                        text: locationNameBinding,
+                        prompt: Text("We’ll name this from the pin")
+                    )
                     TextField(
                         "Notes (optional)",
                         text: $viewModel.notes,
@@ -55,9 +69,15 @@ private struct AddOutingForm: View {
                 Section("Photo") {
                     PhotosPicker(selection: $selectedPhoto, matching: .images) {
                         Label(
-                            viewModel.photoData == nil ? "Add a photo" : "Choose a different photo",
+                            viewModel.photoData == nil ? "Choose from library" : "Choose a different photo",
                             systemImage: "photo.on.rectangle.angled"
                         )
+                    }
+
+                    if DeviceCamera.isAvailable {
+                        TakePhotoButton {
+                            isShowingCamera = true
+                        }
                     }
 
                     if let photoData = viewModel.photoData, let image = UIImage(data: photoData) {
@@ -102,16 +122,42 @@ private struct AddOutingForm: View {
                                 .font(.subheadline.weight(.semibold))
                         }
                         .disabled(!viewModel.isLocationAuthorized && viewModel.authorizationStatus != .notDetermined)
+
+                        if let caption = viewModel.placeCaption {
+                            Button(action: viewModel.refreshPlaceName) {
+                                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                                    if viewModel.isLookingUpPlace {
+                                        ProgressView()
+                                            .controlSize(.small)
+                                    } else {
+                                        Image(systemName: "mappin.and.ellipse")
+                                    }
+                                    Text(caption)
+                                        .multilineTextAlignment(.leading)
+                                    Spacer(minLength: 0)
+                                    Image(systemName: "arrow.clockwise")
+                                        .font(.caption.weight(.semibold))
+                                }
+                                .font(.caption)
+                                .foregroundStyle(AdventureTheme.trail)
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(viewModel.isLookingUpPlace)
+                            .accessibilityLabel(caption)
+                            .accessibilityHint("Looks up the place name for the current pin")
+                        }
                     }
                     .listRowBackground(AdventureTheme.sand)
                 } header: {
                     Text("Place")
+                } footer: {
+                    Text("We’ll fill the name from the pin. Type one if the lookup misses.")
                 }
             }
             .scrollContentBackground(.hidden)
             .background(AdventureTheme.sand)
             .tint(AdventureTheme.ember)
-            .navigationTitle("New outing")
+            .navigationTitle(viewModel.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -127,35 +173,67 @@ private struct AddOutingForm: View {
             .onChange(of: selectedPhoto) { _, item in
                 Task { await loadPhoto(from: item) }
             }
+            .fullScreenCover(isPresented: $isShowingCamera) {
+                CameraPicker(isPresented: $isShowingCamera) { data in
+                    selectedPhoto = nil
+                    viewModel.photoData = data
+                }
+                .ignoresSafeArea()
+            }
         }
     }
 
+    private var locationNameBinding: Binding<String> {
+        Binding(
+            get: { viewModel.locationName },
+            set: { viewModel.updateLocationNameFromUser($0) }
+        )
+    }
+
     private func save() {
+        if let outingToEdit {
+            guard viewModel.applyChanges(to: outingToEdit) else { return }
+            try? modelContext.save()
+            let newlyEarned = outingToEdit.dog.map { MilestoneEvaluator.evaluate(dog: $0, in: modelContext) } ?? []
+            onSave(outingToEdit, newlyEarned)
+            dismiss()
+            return
+        }
+
         guard let dog = dogs.first,
               let outing = viewModel.makeOuting(dog: dog) else { return }
         modelContext.insert(outing)
+        outing.dog = dog
         try? modelContext.save()
-        onSave(outing)
+        let newlyEarned = MilestoneEvaluator.evaluate(dog: dog, in: modelContext)
+        onSave(outing, newlyEarned)
         dismiss()
     }
 
     private func loadPhoto(from item: PhotosPickerItem?) async {
-        guard let item else {
-            viewModel.photoData = nil
-            return
-        }
+        guard let item else { return }
 
         guard let data = try? await item.loadTransferable(type: Data.self) else { return }
 
-        if let image = UIImage(data: data) {
-            viewModel.photoData = image.jpegData(compressionQuality: 0.82)
-        } else {
-            viewModel.photoData = data
-        }
+        viewModel.photoData = JPEGPhoto.data(from: data)
     }
 }
 
-#Preview {
-    AddOutingView { _ in }
+#Preview("New") {
+    AddOutingView { _, _ in }
         .modelContainer(PreviewSupport.container(includeSampleOutings: false))
+}
+
+#Preview("Edit") {
+    AddOutingView(
+        outingToEdit: Outing(
+            date: .now,
+            latitude: 38.7999,
+            longitude: -120.0324,
+            locationName: "Eagle Peak",
+            activityType: "hike",
+            notes: "First real climb together."
+        )
+    ) { _, _ in }
+        .modelContainer(PreviewSupport.container())
 }
